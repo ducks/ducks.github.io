@@ -1,0 +1,10 @@
+extends: default.liquid
+---
+<div class="recents">
+  {% for post in posts %}
+    <article>
+      <h3><a href="{{post.path}}">{{ post.title }}</a></h3>
+      <span class="post-date">{{post.date}}</span>
+      </article>
+  {% endfor %}
+</div>
