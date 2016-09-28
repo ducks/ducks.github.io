@@ -1,7 +1,7 @@
 extends: default.liquid
 
 title: New Site, Who Dis? 
-date: 28 September 2016 22:00:00 -0700
+date: 28 September 2016 16:20:00 -0700
 path: /:year/:month/:day/new-site-who-dis
 ---
 
@@ -28,7 +28,8 @@ so this blog is powered by a static site generator written in Rust called
 
 It&rsquo;s all I really need, and with my posts being markdown and layouts in
 HTML, it shouldn&rsquo;t be too hard to move to another if needed. With Ghost,
-this isn&rsquo;t as easy.
+this isn&rsquo;t as easy. And luckily, I only had a handful of posts on the old
+one so putting those back up shouldn&rsquo;t be tough.
 
-Luckily, I only had a handful of posts on the old one so putting those back up
-shouldn&rsquo;t be tough.
+So please join me in my tales of Rust love and other general programming stuff,
+coffee roasting, woodworking, and more.
