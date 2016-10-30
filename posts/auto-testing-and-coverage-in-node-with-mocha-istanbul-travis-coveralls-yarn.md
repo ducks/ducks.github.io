@@ -80,7 +80,7 @@ Now rerun your tests and bask in the test coverage light.
 
 We&rsquo;ve now added testing and test coverage with little effort, but
 let&rsquo;s go a bit further. Let&rsquo;s make this all happen when pushing
-to github with [TravisCI](https://travis-ci.org).
+to [GitHub](https://github.com) with [TravisCI](https://travis-ci.org).
 We will also generate a report on
 [Coveralls.io](https://coveralls.zendesk.com/hc/en-us).
 
@@ -127,7 +127,7 @@ Coveralls.io.
 That&rsquo;s about it! We added testing and testing coverage and were able
 to automate the build and generate a nice report all with minimal work.
 
-If you would like to see a live Coveralls.io, you can checkout out
+If you would like to see a live Coveralls.io report, you can checkout
 [https://coveralls.io/github/rjgoldsborough/node-cannabis-reports?branch=master](https://coveralls.io/github/rjgoldsborough/node-cannabis-reports?branch=master).
 
 Tweet me at [@rjgoldsborough](https://twitter.com/rjgoldsborough) with any
