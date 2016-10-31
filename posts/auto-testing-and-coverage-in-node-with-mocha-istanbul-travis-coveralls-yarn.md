@@ -16,7 +16,7 @@ by a bug that a test would have caught, or shit, maybe I&rsquo;m just lazy,
 I&rsquo;m not exactly sure. But at the end of the day, I write the tests and who
 tests the tests? But that is for a different blog post altogether.
 
-But! In the spirit of learning new things and adding to the toolbox, I have
+However! In the spirit of learning new things and adding to the toolbox, I have
 been trying to embrace better testing. Especially on anything I may consider
 open sourcing and releasing to the public.
 
