@@ -8,8 +8,8 @@ path: /:year/:month/:day/automatic-tests-coverage-nodejs-mocha-istanbul-travisci
 ---
 
 ## Tests, tests, gotta have tests
-Here&rsquo;s a confession and possible hot take: I&rsquo;m skeptical of TDD,
-or test driven development.
+Here&rsquo;s a confession and possible hot take: I&rsquo;m skeptical of TDD
+(test driven development).
 
 Maybe I&rsquo;ve never done it correctly, maybe I&rsquo;ve never been bitten
 by a bug that a test would have caught, or shit, maybe I&rsquo;m just lazy,
@@ -53,8 +53,8 @@ Now this is where I&rsquo;ll leave learning Mocha up to the reader. 😀
 
 ## Adding test coverage with Istanbul
 
-We now have Mocha set up and are testing, great. But how do we know if
-we&rsquo;re testing the right stuff. That&rsquo;s where Istanbul comes into
+We now have Mocha set up and are testing, great. How do we know if
+we&rsquo;re testing the right stuff? That&rsquo;s where Istanbul comes into
 play.
 
 [Istanbul](https://istanbul.js.org) is JavaScript test coverage made simple.
@@ -74,7 +74,7 @@ Now all you will need to do is update your test command.
       "test": "nyc mocha"
     }
 
-Now rerun your tests and bask in the test coverage light.
+Then rerun your tests and bask in the test coverage light.
 
 ## Automate with TravisCI and Coveralls
 
@@ -117,9 +117,9 @@ after_success:
   - yarn run overalls
 ```
 
-This is saying to install yarn before we install any dependencies, then use
-yarn to install those dependencies, after that we run our tests, and only
-after the build is successful do we send our test coverage report to
+This is saying to install yarn before we install any dependencies. Use
+yarn to install those dependencies. After we run our tests, and only
+after the build is successful, do we send our test coverage report to
 Coveralls.io.
 
 ## Conclusion
