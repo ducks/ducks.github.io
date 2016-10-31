@@ -3,7 +3,7 @@ extends: default.liquid
 title: |
   Automatic testing and coverage in NodeJS with Mocha, Istanbul, TravisCI,
   Coveralls, and Yarn.
-date: 29 October 2016 16:20:00 -0700
+date: 29 October 2016 17:15:00 -0700
 path: /:year/:month/:day/automatic-tests-coverage-nodejs-mocha-istanbul-travisci-coveralls-yarn
 ---
 
