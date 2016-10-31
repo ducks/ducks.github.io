@@ -127,6 +127,10 @@ Coveralls.io.
 That&rsquo;s about it! We added testing and testing coverage and were able
 to automate the build and generate a nice report all with minimal work.
 
+If you would like to see a live TravisCI build report, checkout
+[https://travis-ci.org/rjgoldsborough/node-cannabis-reports](https://travis-ci.org/rjgoldsborough/node-cannabis-reports).
+You can see there how our `.travis.yml` drives the build. 
+
 If you would like to see a live Coveralls.io report, you can checkout
 [https://coveralls.io/github/rjgoldsborough/node-cannabis-reports?branch=master](https://coveralls.io/github/rjgoldsborough/node-cannabis-reports?branch=master).
 
