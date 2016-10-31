@@ -14,7 +14,7 @@ or test driven development.
 Maybe I&rsquo;ve never done it correctly, maybe I&rsquo;ve never been bitten
 by a bug that a test would have caught, or shit, maybe I&rsquo;m just lazy,
 I&rsquo;m not exactly sure. But at the end of the day, I write the tests and who
-tests the tests? But that is for a different blog post altogether.
+tests the tests? That is a different blog post altogether, though.
 
 However! In the spirit of learning new things and adding to the toolbox, I have
 been trying to embrace better testing. Especially on anything I may consider
