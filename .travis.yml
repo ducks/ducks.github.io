@@ -6,8 +6,6 @@ before_script:
 script:
 - cobalt build
 after_success: |
-  [ $TRAVIS_BRANCH = master ] &&
-  [ $TRAVIS_PULL_REQUEST = false ] &&
   cobalt import &&
   git config user.name "Cobalt Site Importer" &&
   git config user.email "rjgoldsborough@gmail.com" &&
