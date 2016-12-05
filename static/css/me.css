@@ -1,0 +1,153 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+  color: #333;
+  font-family: "HelveticaNeue", helvetica, arial, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+h3 {
+  border-bottom: 2px solid #cb4b16;
+}
+
+h4 {
+  color: #cb4b16;
+}
+
+header {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  text-align: center;
+}
+
+header .inner {
+  border-bottom: 3px solid #333;
+  padding-bottom: 1rem;
+}
+
+header h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+header span {
+  color: #cb4b16;
+}
+
+header h1 a {
+  text-decoration: none;
+}
+
+header p {
+  margin: 0;
+}
+
+@media screen and (min-width: 61em) {
+  header {
+    text-align: left;
+  }
+
+  header .inner {
+    display: flex;
+    align-items: center;
+  }
+
+  header h1 {
+    border-right: 3px solid #333;
+    flex: 0 1 auto;
+    font-size: 3em;
+    margin-right: 1rem;
+    padding-right: 1rem;
+  }
+
+  header p {
+    flex: 0 1 auto;
+    font-size: 1.75rem;
+  }
+}
+
+a, a:visited {
+  color: #333; 
+}
+
+main {
+  padding: 0 1rem;
+}
+
+main article h4 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+main article p {
+  margin: 0;
+}
+
+@media screen and (min-width: 61em) {
+  main .inner {
+    display: flex;
+  }
+
+  main aside {
+    border-right: 3px solid #333;
+    flex: 0 1 19.875rem; 
+    padding-right: 2rem;
+    margin-right: 2rem;
+  }
+
+  main section {
+    flex: 0 1 auto;
+  }
+
+  main section article {
+    display: flex;
+  }
+
+  main section article .meta {
+    flex: 0 0 15em;
+    margin-right: 1em;
+  }
+
+  main section article .info {
+
+  }
+}
+
+footer {
+  color: #93a1a1;
+  font-size: smaller;
+  text-align: center;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+@media screen and (min-width: 61em) {
+  .inner {
+    margin: 0 auto;
+    max-width: 60em;
+  }
+}
+
+ul.tools {
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+}
+
+@media screen and (min-width: 61em) {
+  ul.tools {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+  }
+}
