@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="/"></base>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+      <title>Jake Goldsborough | Automatic testing and coverage in NodeJS with Mocha, Istanbul, TravisCI,
+Coveralls, and Yarn.
+</title>
+    
+    <link rel="stylesheet" href="static/css/styles.css"></link>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-86641322-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Jake Goldsborough</a></h1>
+    </header>
+    <main>
+      
+        <article>
+  <h2>Automatic testing and coverage in NodeJS with Mocha, Istanbul, TravisCI,
+Coveralls, and Yarn.
+</h2>
+  <span class="post-date">29 October 2016 17:15:00 -0700</span>
+  <p><h2>Tests, tests, gotta have tests</h2>
+<p>Here’s a confession and possible hot take: I’m skeptical of TDD
+(test driven development).</p>
+<p>Maybe I’ve never done it correctly, maybe I’ve never been bitten
+by a bug that a test would have caught, or shit, maybe I’m just lazy,
+I’m not exactly sure. But at the end of the day, I write the tests and who
+tests the tests? That is a different blog post altogether, though.</p>
+<p>However! In the spirit of learning new things and adding to the toolbox, I have
+been trying to embrace better testing. Especially on anything I may consider
+open sourcing and releasing to the public.</p>
+<h2>Let’s start with Mocha and basic testing</h2>
+<p>Getting started with Mocha is pretty quick. Normally in a post like this, I
+might leave the installing and setup as an exercise to the reader, but since I
+am using <a href="https://yarnpkg.com">Yarn</a>, I wanted to write a bit more.</p>
+<p>If you haven’t used it yet, <a href="https://yarnpkg.com">Yarn</a> is a new package
+and dependency manager for NodeJS. Why you would or wouldn’t use Yarn
+is another post as well. But I’ve been trying it out and really enjoy it.</p>
+<p>So, to install Mocha:</p>
+<pre><code>yarn add --dev mocha
+</code></pre>
+<p>One of the beautiful parts of Yarn, is it traverses the <code>node_modules</code> directory
+by default. So, you can simply run:</p>
+<pre><code>yarn run mocha
+</code></pre>
+<p>You can do this with npm by adding mocha to your scripts but this is one less
+step needed. Pretty cool!</p>
+<p>I do like adding a more semantic <code>test</code> alias that calls <code>mocha</code> to my scripts
+list though.</p>
+<pre><code>scripts: {
+  &quot;test&quot;: &quot;mocha&quot;
+}
+</code></pre>
+<p>Now this is where I’ll leave learning Mocha up to the reader. 😀</p>
+<h2>Adding test coverage with Istanbul</h2>
+<p>We now have Mocha set up and are testing, great. How do we know if
+we’re testing the right stuff? That’s where Istanbul comes into
+play.</p>
+<p><a href="https://istanbul.js.org">Istanbul</a> is JavaScript test coverage made simple.
+It counts the lines of code hit when running your tests to generate an
+overall percentage along with a full detailed report.</p>
+<p>To use Istanbul to generate test coverage, you actually only need the <code>nyc</code>
+cli client.</p>
+<p>To install:</p>
+<pre><code>yarn add --dev nyc
+</code></pre>
+<p>Now all you will need to do is update your test command.</p>
+<pre><code>scripts: {
+  &quot;test&quot;: &quot;nyc mocha&quot;
+}
+</code></pre>
+<p>Then rerun your tests and bask in the test coverage light.</p>
+<h2>Automate with TravisCI and Coveralls</h2>
+<p>We’ve now added testing and test coverage with little effort, but
+let’s go a bit further. Let’s make this all happen when pushing
+to <a href="https://github.com">GitHub</a> with <a href="https://travis-ci.org">TravisCI</a>.
+We will also generate a report on
+<a href="https://coveralls.zendesk.com/hc/en-us">Coveralls.io</a>.</p>
+<p>Before we set up the build, we need to install coveralls. Do that by running:</p>
+<pre><code>yarn add --dev coveralls
+</code></pre>
+<p>This command will take our test coverage output and send it to Coveralls.io.
+Then add a command to your <code>scripts</code> section in your <code>package.json</code>:</p>
+<pre><code>scripts: {
+  &quot;test&quot;: &quot;nyc mocha&quot;,
+  &quot;overalls&quot;: &quot;nyc report --reporter=text-lcov | coveralls&quot;
+}
+</code></pre>
+<p>This command will tell <code>nyc</code> to report our coverage but output it in the <code>lcov</code>
+form and pipe that to <code>coveralls</code>.</p>
+<p>Then, to tell TravisCI how to build your project, your <code>.travis.yml</code> file will
+look something like this:</p>
+<pre><code>language: node_js
+node_js:
+  - &quot;6&quot;
+
+before_install:
+  - npm install -g yarn
+install:
+  - yarn install
+script:
+  - yarn run test
+after_success:
+  - yarn run overalls
+</code></pre>
+<p>This is saying to install yarn before we install any dependencies. Use
+yarn to install those dependencies. After we run our tests, and only
+after the build is successful, do we send our test coverage report to
+Coveralls.io.</p>
+<h2>Conclusion</h2>
+<p>That’s about it! We added testing and testing coverage and were able
+to automate the build and generate a nice report all with minimal work.</p>
+<p>If you would like to see a live TravisCI build report, checkout
+<a href="https://travis-ci.org/ducks/node-cannabis-reports">https://travis-ci.org/ducks/node-cannabis-reports</a>.
+You can see there how our <code>.travis.yml</code> drives the build.</p>
+<p>If you would like to see a live Coveralls.io report, you can checkout
+<a href="https://coveralls.io/github/ducks/node-cannabis-reports?branch=master">https://coveralls.io/github/ducks/node-cannabis-reports?branch=master</a>.</p>
+<p>Tweet me at <a href="https://twitter.com/rjgoldsborough">@rjgoldsborough</a> with any
+feedback or questions!</p>
+</p>
+</article>
+
+      
+    </main>
+    <footer>
+      <span><a href="https://github.com/ducks">
+        <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+      </a></span>
+      <span><a href="https://twitter.com/rjgoldsborough">
+        <svg xmlns="http://www.w3.org/2000/svg"
+        height="24" width="24"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" 
+        id="Twitter_Blud" x="0px" y="0px" viewBox="0 0 375 304.7" 
+        style="enable-background:new 0 0 375 304.7;" xml:space="preserve">
+          <style type="text/css">
+            .st0{fill:#1DA1F2;}
+          </style>
+          <g>
+            <path class="st0" d="M141.1,254c94.3,0,145.9-78.2,145.9-145.9c0-2.2,0-4.4-0.1-6.6c10-7.2,18.7-16.3,25.6-26.6   c-9.2,4.1-19.1,6.8-29.5,8.1c10.6-6.3,18.7-16.4,22.6-28.4c-9.9,5.9-20.9,10.1-32.6,12.4c-9.4-10-22.7-16.2-37.4-16.2   c-28.3,0-51.3,23-51.3,51.3c0,4,0.5,7.9,1.3,11.7c-42.6-2.1-80.4-22.6-105.7-53.6C75.5,67.8,73,76.6,73,86   c0,17.8,9.1,33.5,22.8,42.7c-8.4-0.3-16.3-2.6-23.2-6.4c0,0.2,0,0.4,0,0.7c0,24.8,17.7,45.6,41.1,50.3c-4.3,1.2-8.8,1.8-13.5,1.8   c-3.3,0-6.5-0.3-9.6-0.9c6.5,20.4,25.5,35.2,47.9,35.6c-17.6,13.8-39.7,22-63.7,22c-4.1,0-8.2-0.2-12.2-0.7   C85.2,245.5,112.2,254,141.1,254"/>
+          </g>
+        </svg>
+      </a></span>
+      <p>Built with 
+        <a href="https://github.com/cobalt-org/cobalt.rs">Cobalt</a>
+      </p>
+    </footer>
+  </body>
+</html>

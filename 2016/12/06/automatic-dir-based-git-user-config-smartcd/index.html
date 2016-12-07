@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="/"></base>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+      <title>Jake Goldsborough | Automatic directory based git user config using smartcd
+</title>
+    
+    <link rel="stylesheet" href="static/css/styles.css"></link>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-86641322-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Jake Goldsborough</a></h1>
+    </header>
+    <main>
+      
+        <article>
+  <h2>Automatic directory based git user config using smartcd
+</h2>
+  <span class="post-date">6 December 2016 00:00:00 -0700</span>
+  <p><h2>Oh, The Places You’ll Go!</h2>
+<p>When it comes to computer interfaces, I still feel most at home in a
+terminal, or cli, a command line interface. Most things I do can be done
+more efficiently through a command or a script. Throughout any day, I
+am in and out of countless directories. Far too many to count without
+writing a script to look through my history.</p>
+<p>But not all directories are created equal. Depending on a number of factors,
+your configuration may not be created equal either.</p>
+<p>For example, depending on which organization you're a part of, you may
+want to make git commits with a specific name and/or email. I want to show
+this example because 1) I couldn't find any docs or examples showing this,
+and 2) I didn't get it to work the first time, and I'll probably forget it
+again, so I'm leaving myself a note.</p>
+<h2>Enter smartcd</h2>
+<p><a href="https://github.com/cxreg/smartcd">Smartcd</a> is a neat tool that basically
+allows you to perform actions on any directory change. It also comes
+with an auxiliary library called <code>varstash</code> that will save the current
+value of any variables, aliases, or shell function and temporarily change
+or unset them. When you <code>cd</code> back out of that directory, those values
+will automatically be reset to the original.</p>
+<p>After installing smartcd, you can use it by cding into a directory and
+running <code>smartcd edit enter</code>.</p>
+<p>This will open a file in your editor that looks like this:</p>
+<pre><code>########################################################################
+# smartcd enter - /Users/thedude/urbanachievers
+#
+# This is a smartcd script.  Commands you type will be run when you
+# enter this directory.  The string __PATH__ will be replaced with
+# the current path.  Some examples are editing your $PATH or creating
+# a temporary alias:
+#
+#     autostash PATH=__PATH__/bin:$PATH
+#     autostash alias restart=&quot;service stop; sleep 1; service start&quot;
+#
+# See http://smartcd.org for more ideas about what can be put here
+########################################################################
+</code></pre>
+<h2>Let me explain something to you. Um, I am not &quot;Mr. Lebowski&quot;.</h2>
+<p>To set your git email and name, add the following lines:</p>
+<pre><code>autostash GIT_AUTHOR_NAME=&quot;The Dude&quot;
+autostash GIT_AUTHOR_EMAIL=&quot;thedude@theurbanachievers.io&quot;
+</code></pre>
+<p>This simply sets the <code>GIT_AUTHOR_NAME</code> and <code>GIT_AUTHOR_EMAIL</code>
+environment variables. Git will use these if present and fall back to
+default configuration if not. Then, if we leave this directory, these
+variables are reset, so git will automatically fallback to your global
+configuration.</p>
+<p>And voilà, any commits in this directory will contain the author information
+we set in the <code>smartcd</code> enter script. You can edit this script again by
+going back to the same directory and rerunning <code>smartcd edit enter</code>, or you
+can find these scripts in the smartcd directory. By default this installs to
+<code>~/.smartcd/scripts</code> but this can differ depending on how you installed.</p>
+<p>Tweet me at <a href="https://twitter.com/rjgoldsborough">@rjgoldsborough</a> with any
+questions, concerns, or improvements. Thanks for reading.</p>
+</p>
+</article>
+
+      
+    </main>
+    <footer>
+      <span><a href="https://github.com/ducks">
+        <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+      </a></span>
+      <span><a href="https://twitter.com/rjgoldsborough">
+        <svg xmlns="http://www.w3.org/2000/svg"
+        height="24" width="24"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" 
+        id="Twitter_Blud" x="0px" y="0px" viewBox="0 0 375 304.7" 
+        style="enable-background:new 0 0 375 304.7;" xml:space="preserve">
+          <style type="text/css">
+            .st0{fill:#1DA1F2;}
+          </style>
+          <g>
+            <path class="st0" d="M141.1,254c94.3,0,145.9-78.2,145.9-145.9c0-2.2,0-4.4-0.1-6.6c10-7.2,18.7-16.3,25.6-26.6   c-9.2,4.1-19.1,6.8-29.5,8.1c10.6-6.3,18.7-16.4,22.6-28.4c-9.9,5.9-20.9,10.1-32.6,12.4c-9.4-10-22.7-16.2-37.4-16.2   c-28.3,0-51.3,23-51.3,51.3c0,4,0.5,7.9,1.3,11.7c-42.6-2.1-80.4-22.6-105.7-53.6C75.5,67.8,73,76.6,73,86   c0,17.8,9.1,33.5,22.8,42.7c-8.4-0.3-16.3-2.6-23.2-6.4c0,0.2,0,0.4,0,0.7c0,24.8,17.7,45.6,41.1,50.3c-4.3,1.2-8.8,1.8-13.5,1.8   c-3.3,0-6.5-0.3-9.6-0.9c6.5,20.4,25.5,35.2,47.9,35.6c-17.6,13.8-39.7,22-63.7,22c-4.1,0-8.2-0.2-12.2-0.7   C85.2,245.5,112.2,254,141.1,254"/>
+          </g>
+        </svg>
+      </a></span>
+      <p>Built with 
+        <a href="https://github.com/cobalt-org/cobalt.rs">Cobalt</a>
+      </p>
+    </footer>
+  </body>
+</html>
