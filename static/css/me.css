@@ -15,7 +15,7 @@ body {
 }
 
 h3 {
-  border-bottom: 2px solid #cb4b16;
+  font-size: 1.75rem;
 }
 
 h4 {
@@ -92,9 +92,17 @@ main article p {
   margin: 0;
 }
 
+section.tech-skills p {
+  margin: 0;
+}
+
+main section article .meta h4,
+main section article .meta p {
+  display: inline;
+}
+
 @media screen and (min-width: 61em) {
   main .inner {
-    display: flex;
   }
 
   main aside {
@@ -109,12 +117,9 @@ main article p {
   }
 
   main section article {
-    display: flex;
   }
 
   main section article .meta {
-    flex: 0 0 15em;
-    margin-right: 1em;
   }
 
   main section article .info {
@@ -135,7 +140,7 @@ footer a {
 @media screen and (min-width: 61em) {
   .inner {
     margin: 0 auto;
-    max-width: 60em;
+    max-width: 50em;
   }
 }
 
